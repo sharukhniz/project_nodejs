@@ -1,0 +1,207 @@
+<div class="overlay" id="over_lay"></div>
+<div class="modal emp-form" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          onclick="closeAddEmp()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg tcol">
+          <div class="col mb-2">
+            <div style="
+                    border: 1px dashed #8f9bba;
+                    border-radius: 13px;
+                    flex-direction: column;
+                    height: 120px;
+                    align-items: center;
+                    padding: 22px 0px;
+                    position: relative;
+                  " class="col upload d-flex">
+              <div class="upl_img" id="upl_img">
+                <span class="material-symbols-outlined"> upload </span>
+                <h5>Upload Image</h5>
+                <h6>PNG, JPG files are allowed</h6>
+              </div>
+              <div class="img_box" id="img_box">
+                <div class="addImgPreview" id="addImgPreview"></div>
+                <p>Click Here to Change</p>
+                <!-- <input type="file" id="aaa"> -->
+              </div>
+              <input type="file" class="xxvvyy" id="imgUpload">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 mb-3 select_menu">
+              <label class="form-check-label" for="salutation">Salutation<span>*</span></label>
+              <select class="form-select" aria-label="Default select example" id="salutation">
+                <option selected value>Select</option>
+                <option value="Mr.">Mr.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Ms.">Ms.</option>
+              </select>
+              <label class="label_val" id="errormessageSalutation" for="salutation">Select Salutation</label>
+            </div>
+            <div class="col-sm-4">
+              <div class="mb-3">
+                <label class="form-check-label" for="first_name">First Name<span>*</span></label>
+                <input type="text" class="form-control" id="first_name" placeholder="Enter Your First Name" required />
+                <label class="label_val" id="errormessageFirstname" for="first_name">Enter Your First Name</label>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="mb-3">
+                <label class="form-check-label" for="last_name">Last Name<span>*</span></label>
+                <input type="text" class="form-control" id="last_name" placeholder="Enter Your Last Name" />
+                <label class="label_val" id="errormessageLastname" for="last_name">Enter Your Last Name</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-check-label" for="email">Email Address<span>*</span></label>
+                <input type="email" class="form-control" id="email" placeholder="mail@simmmple.com" />
+                <label class="label_val" id="errormessageEmail" for="email">Enter Your Email</label>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-check-label" for="mob_num">Mobile Number<span>*</span></label>
+                <input type="tel" class="form-control" maxlength="10" id="mob_num" placeholder="Enter Mobile Number" />
+                <label class="label_val" id="errormessagePhone" for="mob_num">Enter Your Mobile Number</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 date_option">
+              <div class="mb-3">
+                <label class="form-check-label" for="dob">Date of Birth<span>*</span></label>
+                <input type="date" class="form-control" id="dob" />
+                <label class="label_val" id="errormessageDob" for="dob">Enter Your DOB</label>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-check-label col-12 mb-2">Gender<span>*</span></label>
+              <div class="form-check form-check-inline mt-1">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male" checked />
+                <h6>Male</h6>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female" />
+                <h6>Female</h6>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="mb-3">
+                <label class="form-check-label" for="address">Address<span>*</span></label>
+                <input type="text" class="form-control" id="address" placeholder="Enter Address" />
+                <label class="label_val" id="errormessageAddress" for="address">Enter Your Address</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="mb-3">
+                <label class="form-check-label" for="qualification">Qualification<span>*</span></label>
+                <input type="text" class="form-control" id="qualification" placeholder="Enter Qualification" />
+                <label class="label_val" id="errormessageQualifications" for="qualification">Enter Your
+                  Qualification</label>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-6 mb-3 select_menu">
+              <label class="form-check-label" for="country">Country<span>*</span></label>
+              <select class="form-select" aria-label="Default select example" id="country">
+                <option selected value>Select</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Germany">Germany</option>
+                <option value="Australia">Australia</option>
+                <option value="Canada">Canada</option>
+                <option value="France">France</option>
+                <option value="Japan">Japan</option>
+                <option value="China">China</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Mexico">Mexico</option>
+              </select>
+              <label class="label_val" id="errormessageCountry" for="country">Select Country</label>
+            </div>
+            <div class="col-sm-6 select_menu">
+              <label class="form-check-label" for="state">State<span>*</span></label>
+              <select class="form-select" aria-label="Default select example" id="state">
+                <option selected value>Select</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Florida">Florida</option>
+                <option value="England">England</option>
+                <option value="Berlin">Berlin</option>
+                <option value="Victoria">Victoria</option>
+                <option value="California">California</option>
+                <option value="Texas">Texas</option>
+                <option value="New York">New York</option>
+                <option value="Bavaria">Bavaria</option>
+                <option value="New South Wales">New South Wales</option>
+              </select>
+              <label class="label_val" id="errormessageState" for="state">Select State</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 mb-3 select_menu">
+              <label class="form-check-label" for="city">City<span>*</span></label>
+              <select class="form-select" aria-label="Default select example" id="city">
+                <option selected value>Select</option>
+                <option value="Trivandrum">Trivandrum</option>
+                <option value="Miami">Miami</option>
+                <option value="Blackpool">Blackpool</option>
+                <option value="Strausberg">Strausberg</option>
+                <option value="Melbourne">Melbourne</option>
+                <option value="Los Angeles">Los Angeles</option>
+                <option value="New York City">New York City</option>
+                <option value="Sydney">Sydney</option>
+                <option value="Berlin">Berlin</option>
+                <option value="Paris">Paris</option>
+              </select>
+              <label class="label_val" id="errormessageCity" for="city">Select City</label>
+            </div>
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-check-label" for="zip_pin">Pin/Zip<span>*</span></label>
+                <input type="text" class="form-control" id="zip_pin" placeholder="Enter zip/pin" />
+                <label class="label_val" id="errormessagePin" for="zip_pin">Enter Pin/Zip</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-check-label" for="username">Username<span>*</span></label>
+                <input type="text" class="form-control" id="username" placeholder="Enter Username" />
+                <label class="label_val" id="errormessageUsrname" for="username">Enter Your Username</label>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="form-check-label" for="password">Password<span>*</span></label>
+                <input type="password" class="form-control" id="password" placeholder="Enter Password" />
+                <label class="label_val" id="errormessagePass" for="password">Enter Your Password</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeAddEmp()">
+            Cancel
+          </button>
+          <button type="button" id="add_emp_btn" class="btn btn-primary">
+            Add Employee
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

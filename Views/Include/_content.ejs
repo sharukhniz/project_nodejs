@@ -1,0 +1,94 @@
+<div class="content">
+  <div style="flex: 1" class="content_page p-3">
+    <div class="header">
+      <div class="directory">
+        <p>Dashboard / Employees</p>
+        <h1>Employees</h1>
+      </div>
+      <div class="search_bar">
+        <div class="search">
+          <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+          <input type="search" placeholder="&#128269; Search... " id="search" onkeyup=" searchBar() " />
+        </div>
+        <i class="fa-regular fa-bell"></i>
+        <img src="/img/Elipse5.png" alt="" />
+      </div>
+    </div>
+    <div class="container-fluid employee">
+      <div class="employee_list">
+        <div class="employee_head">
+          <div class="employee_title">
+            <h2>Employees List</h2>
+            <select class="form-select page_select" id="page_no" onchange="listPaginate(value)"  aria-label="Default select example" >
+              <!-- <option selected>1</option>
+              <option class="valuee" value="1" onchange={pagenum()}>1</option>
+              <option class="valuee" value="2">2</option>
+              <option class="valuee" value="3">3</option>
+              <option class="valuee" value="4">4</option>
+              <option class="valuee" value="5">5</option>
+              <option class="valuee" value="6">6</option>
+              <option class="valuee" value="7">7</option>
+              <option class="valuee" value="8">8</option>
+              <option class="valuee" value="9">9</option>
+              <option class="valuee" value="10">10</option> -->
+            </select>
+            <h5>of <span id="numOfPages">10</span></h5>
+          </div>
+          <div class="add_employee_btn">
+            <button onclick="openAddEmp()" class="btn menu_button" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
+              Add Employee
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="employee_data">
+        <table class="table" id="paginated-list">
+          <thead>
+            <tr>
+              <th>
+                <select class="sort">
+                  <option selected>Sl.No</option>
+                </select>
+              </th>
+              <th>
+                <select class="sort">
+                  <option selected>Name</option>
+                </select>
+              </th>
+              <th>
+                <select class="sort">
+                  <option selected>Email</option>
+                </select>
+              </th>
+              <th>
+                <select class="sort">
+                  <option selected>Phone</option>
+                </select>
+              </th>
+              <th>
+                <select class="sort">
+                  <option selected>Gender</option>
+                </select>
+              </th>
+              <th>
+                <select class="sort">
+                  <option selected>DOB</option>
+                </select>
+              </th>
+              <th>
+                <select class="sort">
+                  <option selected>Country</option>
+                </select>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="tbody" id="employeetablebody">
+            <tr class="zero">
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
