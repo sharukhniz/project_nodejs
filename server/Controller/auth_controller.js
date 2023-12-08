@@ -64,7 +64,7 @@ exports.login = async (req, res) => {
       // Set the user session upon successful login
       req.session.user = check;
       res.redirect("/");
-  }  else {
+    } else {
       return res.render("login", {
         errorMessage: "*Invalid username or password?",
       });
@@ -77,9 +77,9 @@ exports.login = async (req, res) => {
 };
 exports.logout = async (req, res) => {
   req.session.destroy((err) => {
-      if (err) {
-          console.log(err)
-      }
-      res.redirect("/")
+    if (err) {
+      console.log(err);
+    }
+    res.redirect("/");
   });
-}
+};

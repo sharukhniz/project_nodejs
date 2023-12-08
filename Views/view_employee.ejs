@@ -46,6 +46,10 @@
         <button class="btn menu_button">
           <span class="active_bar"></span><span><i class="fa-solid fa-lock"></i></span><a href="/logout">Logout</a>
         </button>
+        <button class="btn menu_button" onClick="printdiv('printable_div_id');">
+          <span class="active_bar"></span><span><i class="fa-solid fa-user"></i></span>Print
+        </button>
+
       </div>
       <div class="host">
         <h6>Powered by</h6>
@@ -55,7 +59,9 @@
     <div class="content">
       <div class="content_page p-3 pb-5">
         <div class="header" id="headerdetails"></div>
+        <div id='printable_div_id'>
         <div class="container employee_details" id="detailsemp"></div>
+      </div>
       </div>
       <div class="footer_employee px-4">
         <div class="copyright">

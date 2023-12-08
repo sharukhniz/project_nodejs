@@ -9,26 +9,32 @@ function detailsEmployee(id) {
     .then((res) => res.json())
     .then((employee) => {
       console.log(employee);
-      let dobParts = employee.dob.split('-');
-            let day = parseInt(dobParts[0], 10);
-            let month = parseInt(dobParts[1], 10) - 1; 
-            let year = parseInt(dobParts[2], 10);
-            let dob = new Date(year, month, day);
-    //   const dateOfBirth = employee.dob;
-    let currentDate = new Date();
-              
-    let age = currentDate.getFullYear() - dob.getFullYear();
-    console.log(dob.getFullYear());
-    if (currentDate.getMonth() < dob.getMonth() || (currentDate.getMonth() === dob.getMonth() && currentDate.getDate() < dob.getDate())) {
+      let dobParts = employee.dob.split("-");
+      let day = parseInt(dobParts[0], 10);
+      let month = parseInt(dobParts[1], 10) - 1;
+      let year = parseInt(dobParts[2], 10);
+      let dob = new Date(year, month, day);
+      //   const dateOfBirth = employee.dob;
+      let currentDate = new Date();
+
+      let age = currentDate.getFullYear() - dob.getFullYear();
+      console.log(dob.getFullYear());
+      if (
+        currentDate.getMonth() < dob.getMonth() ||
+        (currentDate.getMonth() === dob.getMonth() &&
+          currentDate.getDate() < dob.getDate())
+      ) {
         age--;
-    }
-    //   console.log("Age:", age);/
-const empNameHead = document.getElementById('headerdetails')
-empNameHead.innerHTML = `
+      }
+      //   console.log("Age:", age);/
+      const empNameHead = document.getElementById("headerdetails");
+      empNameHead.innerHTML = `
 <div class="directory">
 <p>Dashboard / <a href="/">Employees</a>
 / ${employee.first_name} ${employee.last_name}</p>
-<h2>${employee.first_name.slice(0,1).toUpperCase()}${employee.last_name.slice(0,1).toUpperCase()}</h2>
+<h2>${employee.first_name.slice(0, 1).toUpperCase()}${employee.last_name
+        .slice(0, 1)
+        .toUpperCase()}</h2>
 <h1>Employees</h1>
 </div>
 `;
@@ -95,8 +101,7 @@ empNameHead.innerHTML = `
                         </div>
                     </div>
                     <div class="view_button mb-4 pb-5">
-                    <button type="button" class="btn btn-primary" onclick="deleteEmployee('${employee._id
-                    }')">Delete</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteEmployee('${employee._id}')">Delete</button>
                     <button class="btn menu_button"  onclick="editEmployeeDetails('${employee._id}')">Edit Details</button>
                 </div>
        `;
@@ -105,6 +110,23 @@ empNameHead.innerHTML = `
 
 detailsEmployee(id);
 
-function redirect(){
-    location.replace("/")
+function redirect() {
+  location.replace("/");
+}
+
+// const handlePrint = () => {
+//   var actContents = document.body.innerHTML;
+//   document.body.innerHTML = actContents;
+//   window.print();
+// }
+function printdiv(printable_div_id) {
+  var header_str =
+    "<html><head><title>" + document.title + "</title></head><body>";
+  var footer_str = "</body></html>";
+  var new_str = document.getElementById(printable_div_id).innerHTML;
+  var old_str = document.body.innerHTML;
+  document.body.innerHTML = header_str + new_str + footer_str;
+  window.print();
+  document.body.innerHTML = old_str;
+  false;
 }
