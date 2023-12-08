@@ -7,7 +7,7 @@ const auth_controller=require("../Controller/auth_controller")
  * @description root route
  * @method get/
  */
-router.get("/", services.homeRoutes);
+// router.get("/", services.homeRoutes);
 router.get("/view/", services.viewRoutes);
 
 router.get("/login",services.loginRoutes);

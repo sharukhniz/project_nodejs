@@ -24,7 +24,9 @@ exports.signup = async (req, res) => {
 
   const existingUser = await collection.findOne({ name: data.name });
   if (existingUser) {
-    res.send("User already exists.Please choose a different username.");
+    res.render("signup", {
+      errorMessage: "*UserID already exist",
+    });
   } else
     try {
       //hash the password using bcrypt
