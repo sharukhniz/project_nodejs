@@ -1,5 +1,4 @@
 function editEmployeeDetails(employeeId) {
-  console.log(employeeId);
   fetch(`http://localhost:3000/api/employees/?id=${employeeId}`, {
     method: "GET",
   })
@@ -7,7 +6,6 @@ function editEmployeeDetails(employeeId) {
     .then((employees) => {
       console.log(employees);
       openEditEmployee();
-      console.log(employeeId);
       document.getElementById("editsalutation").value = employees.salutation;
       document.getElementById("editfirstname").value = employees.first_name;
       document.getElementById("editlastname").value = employees.last_name;
@@ -34,7 +32,7 @@ function editEmployeeDetails(employeeId) {
     .getElementById("saveChanges")
     .addEventListener("click", function (event) {
       event.preventDefault();
-      console.log("edited");
+      // console.log("edited");
       saveEditedEmployee(employeeId);
     });
 }
@@ -44,7 +42,7 @@ function formatDate(dateString) {
 }
 // Save changes event
 async function saveEditedEmployee(employeeId) {
-  console.log(employeeId, "success");
+  // console.log(employeeId, "success");
   try {
     const salutation = document.getElementById("editsalutation").value;
     const first_name = document.getElementById("editfirstname").value;

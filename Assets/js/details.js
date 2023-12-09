@@ -1,6 +1,5 @@
 let params = new URLSearchParams(document.location.search);
 let id = params.get("id");
-console.log(id);
 
 function detailsEmployee(id) {
   fetch(`http://localhost:3000/api/employees/?id=${id}`, {
@@ -18,7 +17,6 @@ function detailsEmployee(id) {
       let currentDate = new Date();
 
       let age = currentDate.getFullYear() - dob.getFullYear();
-      console.log(dob.getFullYear());
       if (
         currentDate.getMonth() < dob.getMonth() ||
         (currentDate.getMonth() === dob.getMonth() &&
