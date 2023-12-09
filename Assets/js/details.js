@@ -32,9 +32,6 @@ function detailsEmployee(id) {
 <div class="directory">
 <p>Dashboard / <a href="/">Employees</a>
 / ${employee.first_name} ${employee.last_name}</p>
-<h2>${employee.first_name.slice(0, 1).toUpperCase()}${employee.last_name
-        .slice(0, 1)
-        .toUpperCase()}</h2>
 <h1>Employees</h1>
 </div>
 `;
@@ -45,7 +42,14 @@ function detailsEmployee(id) {
                         <img src="/img/Background_Image.png" alt="">
                     </div>
                     <div style="justify-content: center;" class="col profile_img d-flex">
-                        <img src="/${employee.avatar}">
+                    ${employee.avatar ?
+                        `<img class="profile-img" src="/${employee.avatar}">` :
+                        `<div class="dummyImgView">
+                           <h2>${employee.first_name.slice(0, 1).toUpperCase()}${employee.last_name
+                               .slice(0, 1)
+                               .toUpperCase()}</h2>
+                         </div>`}
+
                     </div>
                     <div style="flex-direction: column;text-align: center;" class="col emp_details d-flex">
                         <h5>${employee.first_name} ${employee.last_name}</h5>
@@ -114,19 +118,15 @@ function redirect() {
   location.replace("/");
 }
 
-// const handlePrint = () => {
-//   var actContents = document.body.innerHTML;
-//   document.body.innerHTML = actContents;
+
+// function printdiv(printable_div_id) {
+//   var header_str =
+//     "<html><head><title>" + document.title + "</title></head><body>";
+//   var footer_str = "</body></html>";
+//   var new_str = document.getElementById(printable_div_id).innerHTML;
+//   var old_str = document.body.innerHTML;
+//   document.body.innerHTML = header_str + new_str + footer_str;
 //   window.print();
+//   document.body.innerHTML = old_str;
+//   false;
 // }
-function printdiv(printable_div_id) {
-  var header_str =
-    "<html><head><title>" + document.title + "</title></head><body>";
-  var footer_str = "</body></html>";
-  var new_str = document.getElementById(printable_div_id).innerHTML;
-  var old_str = document.body.innerHTML;
-  document.body.innerHTML = header_str + new_str + footer_str;
-  window.print();
-  document.body.innerHTML = old_str;
-  false;
-}

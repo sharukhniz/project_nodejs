@@ -32,9 +32,18 @@ async function displayEmployees(data) {
     const employee = displayedEmployees[i];
     temp += `<tr class="zero">
         <td>${startIndex + i + 1}</td>
-        <td><img class="profile-img" src="${employee.avatar}">${
-      employee.salutation + " " + employee.first_name + " " + employee.last_name
-    }</td>
+        <td><div class="imageCont">
+
+  ${employee.avatar ?
+    `<img class="profile-img" src="${employee.avatar}">` :
+    `<div class="dummyImg">
+       <h2>${employee.first_name.slice(0, 1).toUpperCase()}${employee.last_name
+           .slice(0, 1)
+           .toUpperCase()}</h2>
+     </div>`}
+  ${employee.salutation + " " + employee.first_name + " " + employee.last_name}
+  </div>
+</td>
         <td>${employee.email}</td>
         <td>${employee.phone}</td>
         <td>${employee.gender}</td>
@@ -58,10 +67,12 @@ async function displayEmployees(data) {
                             </div>
                           </td>
       </tr>`;
+
   }
 
   employeeTableBody.innerHTML = temp;
 }
+
 
 
 

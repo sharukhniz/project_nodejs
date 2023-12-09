@@ -106,24 +106,24 @@ async function saveEditedEmployee(employeeId) {
 }
 
 // IMAGE
-// function updateImage() {
-//   const updateUserImage = document.getElementById("edit_input");
-//   console.log("hi");
-//   updateUserImage.addEventListener("change", function (event) {
-//     const selectedImage = updateUserImage.files[0];
+function updateImage() {
+  const updateUserImage = document.getElementById("edit_input");
+  console.log("hi");
+  updateUserImage.addEventListener("change", function (event) {
+    const selectedImage = updateUserImage.files[0];
 
-//     const reader = new FileReader();
+    const reader = new FileReader();
 
-//     reader.onload = function (event) {
-//       const imageUrl = event.target.result;
+    reader.onload = function (event) {
+      const imageUrl = event.target.result;
 
-//       const newEmpImage = document.getElementById("editImgPreview");
+      const newEmpImage = document.getElementById("editImgPreview");
 
-//       newEmpImage.src = imageUrl;
-//     };
-//     reader.readAsDataURL(selectedImage);
-//   });
-// }
+      newEmpImage.src = imageUrl;
+    };
+    reader.readAsDataURL(selectedImage);
+  });
+}
 
 // Function to show a confirmation message after editing
 function editConfOn() {
