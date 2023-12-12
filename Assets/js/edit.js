@@ -212,7 +212,7 @@ function editFormValidation() {
   const salutation = document.getElementById("editsalutation").value;
 
   var errorMessageSalutation = document.getElementById(
-    "errormessageSalutation"
+    "edit_errormessageSalutation"
   );
   var errorMessageFirstName = document.getElementById("edit_errormessageFirstname");
   var errorMessageLastName = document.getElementById("edit_errormessageLastname");

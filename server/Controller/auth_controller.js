@@ -14,9 +14,10 @@ exports.signup = async (req, res) => {
 
   const existingUser = await collection.findOne({ name: data.name });
   if (existingUser) {
-    res.render("signup", {
-      errorMessage: "*UserID already exist",
-    });
+    return res.status(401).send("already found");
+    // res.render("signup", {
+    //   errorMessage: "*UserID already exist",
+    // });
   } else
     try {
       //bcrypt
@@ -39,9 +40,10 @@ exports.login = async (req, res) => {
 
     // check username
     if (!check) {
-      return res.render("login", {
-        errorMessage: "*Invalid username or password?",
-      });
+      return res.status(502).send("already exist");
+      // return res.render("login", {
+      //   errorMessage: "*Invalid username or password?",
+      // });
     }
 
     // password matching

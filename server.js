@@ -32,6 +32,7 @@ app.use(
 );
 // parse req to body parser
 app.use(bodyparser.urlencoded({ extended: true }));
+app.use(express.json())
 // set view engine
 app.set("view engine", "ejs");
 // app.set("views",path.resolve(__dirname,"views/ejs"))

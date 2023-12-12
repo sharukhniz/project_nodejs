@@ -15,7 +15,7 @@
 <body>
 	<div class="container" id="main_container">
 		<div class="sign-up-container_signon">
-			<form action="/signup" method="post">
+			<form id="signupForm">
 				<h1>Create Account</h1>
 				<div class="social-container">
 					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -28,13 +28,8 @@
 					<input type="text" id="name" placeholder="User ID" name="name" />
 					<input type="text" id="email" placeholder="Email" name="email" />
 					<input type="password" id="password" placeholder="Password" name="password" />
-					<button>Sign Up</button>
-					<% if (typeof errorMessage==='undefined' ) { var errorMessage=null; } %>
-						<% if (errorMessage) { %>
-							<p style="color: red;">
-								<%= errorMessage %>
-							</p>
-							<% } %>
+					<button type="button" onclick="signup()">Sign Up</button>
+					<label class="label_val" id="errorName" for="name" style="display: none; color: red; margin-top: 15px;">User id is </label>
 				</div>
 			</form>
 		</div>
@@ -48,5 +43,5 @@
 	</div>
 	</div>
 </body>
-
+<script src="/js/loginSignup.js"></script>
 </html>
