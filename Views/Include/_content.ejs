@@ -8,7 +8,12 @@
       <div class="search_bar">
         <div class="search">
           <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-          <input type="search" placeholder="&#128269; Search... " id="search" onkeyup=" searchBar() " />
+          <input
+            type="search"
+            placeholder="&#128269; Search... "
+            id="search"
+            onkeyup=" searchBar() "
+          />
         </div>
         <i class="fa-regular fa-bell"></i>
         <img src="/img/Elipse5.png" alt="" />
@@ -19,7 +24,12 @@
         <div class="employee_head">
           <div class="employee_title">
             <h2>Employees List</h2>
-            <select class="form-select page_select" id="page_no" onchange="listPaginate(value)"  aria-label="Default select example" >
+            <select
+              class="form-select page_select"
+              id="page_no"
+              onchange="listPaginate(value)"
+              aria-label="Default select example"
+            >
               <!-- <option selected>1</option>
               <option class="valuee" value="1" onchange={pagenum()}>1</option>
               <option class="valuee" value="2">2</option>
@@ -32,11 +42,15 @@
               <option class="valuee" value="9">9</option>
               <option class="valuee" value="10">10</option> -->
             </select>
-            <h5>of  <span id="numOfPages"> 10</span></h5>
+            <h5>of <span id="numOfPages"> 10</span></h5>
           </div>
           <div class="add_employee_btn">
-            <button onclick="openAddEmp()" class="btn menu_button" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">
+            <button
+              onclick="openAddEmp()"
+              class="btn menu_button"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
               Add Employee
             </button>
           </div>
@@ -85,10 +99,10 @@
             </tr>
           </thead>
           <tbody class="tbody" id="employeetablebody">
-            <tr class="zero">
-            </tr>
+            <tr class="zero"></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+</div>

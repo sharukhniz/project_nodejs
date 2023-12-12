@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let formatteddate = day + "-" + month + "-" + year;
       return formatteddate;
     }
-    const dob=dateofbirth;
+    const dob = dateofbirth;
     //const gender = document.querySelector('input[name="gender"]:checked').value;
     const address = document.getElementById("address").value;
     const country = document.getElementById("country").value;
@@ -32,45 +32,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const qualification = document.getElementById("qualification").value;
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    const file=document.getElementById("imgUpload").files[0];
+    const file = document.getElementById("imgUpload").files[0];
     // Create a new employee object
     const newEmployee = new FormData();
-      newEmployee.append('salutation',salutation);
-      newEmployee.append('first_name',first_name);
-      newEmployee.append('last_name',last_name);
-      newEmployee.append('email',email);
-      newEmployee.append('phone',phone);
-      newEmployee.append('dob',dob);
-      newEmployee.append('gender',gender);
-      newEmployee.append('address',address);
-      newEmployee.append('country',country);
-      newEmployee.append('state',state);
-      newEmployee.append('city',city);
-      newEmployee.append('zip_pin',zip_pin);
-      newEmployee.append('qualification',qualification);
-      newEmployee.append('username',username);
-      newEmployee.append('password',password);
-      newEmployee.append('avatar',file);
-      
-      if (FormValidation()){
-        fetch("http://localhost:3000/api/employees",{
-        method:'POST',
-        body:newEmployee,
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Employee added:", data);
-        console.log(data.id);
-        closeAddEmp();
-        FormValidationSuccessPopup();
+    newEmployee.append("salutation", salutation);
+    newEmployee.append("first_name", first_name);
+    newEmployee.append("last_name", last_name);
+    newEmployee.append("email", email);
+    newEmployee.append("phone", phone);
+    newEmployee.append("dob", dob);
+    newEmployee.append("gender", gender);
+    newEmployee.append("address", address);
+    newEmployee.append("country", country);
+    newEmployee.append("state", state);
+    newEmployee.append("city", city);
+    newEmployee.append("zip_pin", zip_pin);
+    newEmployee.append("qualification", qualification);
+    newEmployee.append("username", username);
+    newEmployee.append("password", password);
+    newEmployee.append("avatar", file);
 
-  readEmployee();
-
+    if (FormValidation()) {
+      fetch("http://localhost:3000/api/employees", {
+        method: "POST",
+        body: newEmployee,
       })
-      .catch((error) => {
-        console.error("Error adding employee:", error);
-      });
-    }  
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Employee added:", data);
+          console.log(data.id);
+          closeAddEmp();
+          FormValidationSuccessPopup();
+
+          readEmployee();
+        })
+        .catch((error) => {
+          console.error("Error adding employee:", error);
+        });
+    }
   });
 });
 // clearForm
@@ -89,9 +88,8 @@ function clearForm() {
   document.getElementById("username").value = "";
   document.getElementById("password").value = "";
   document.getElementById("salutation").value = "";
-  document.getElementById("imgUpload").value="";
+  document.getElementById("imgUpload").value = "";
   // document.getElementById("gender").value="";
-
 }
 
 function FormValidationSuccessPopup() {
@@ -100,9 +98,7 @@ function FormValidationSuccessPopup() {
 
   ConfirmationPopup.style.display = "block";
   employeeForm.style.display = "none";
-  overlayOn()
-  
-
+  overlayOn();
 }
 
 function closeValPopup() {
@@ -133,36 +129,33 @@ function closeAddEmp() {
 }
 // img upload preview
 document.addEventListener("DOMContentLoaded", function () {
-const chooseFile = document.getElementById("imgUpload");
-const imgPreview = document.getElementById("addImgPreview");
+  const chooseFile = document.getElementById("imgUpload");
+  const imgPreview = document.getElementById("addImgPreview");
 
-chooseFile.addEventListener("change", function () {
-  
-  getImgData();
+  chooseFile.addEventListener("change", function () {
+    getImgData();
+  });
 
-});
-
-
-function getImgData() {
-  let chooseFile = document.getElementById("imgUpload");
-const imgPreview = document.getElementById("addImgPreview");
-  const files = chooseFile.files[0];
-  if (files) {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(files);
-    fileReader.addEventListener("load", function () {
-      imgPreview.style.display = "block";
-      imgPreview.innerHTML = '<img src="' + this.result + '" />';
-      console.log("image vanno");
-    });
-    hideUpload();
+  function getImgData() {
+    let chooseFile = document.getElementById("imgUpload");
+    const imgPreview = document.getElementById("addImgPreview");
+    const files = chooseFile.files[0];
+    if (files) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(files);
+      fileReader.addEventListener("load", function () {
+        imgPreview.style.display = "block";
+        imgPreview.innerHTML = '<img src="' + this.result + '" />';
+        console.log("image vanno");
+      });
+      hideUpload();
+    }
   }
-}
 
-function hideUpload() {
-  const hideUpload = document.getElementById("upl_img");
-  hideUpload.style.display = "none";
-  const show_upload = document.getElementById("img_box");
-  show_upload.style.display = "flex";
-}
-})
+  function hideUpload() {
+    const hideUpload = document.getElementById("upl_img");
+    hideUpload.style.display = "none";
+    const show_upload = document.getElementById("img_box");
+    show_upload.style.display = "flex";
+  }
+});

@@ -40,13 +40,17 @@ function detailsEmployee(id) {
                         <img src="/img/Background_Image.png" alt="">
                     </div>
                     <div style="justify-content: center;" class="col profile_img d-flex">
-                    ${employee.avatar ?
-                        `<img class="profile-img" src="/${employee.avatar}">` :
-                        `<div class="dummyImgView">
-                           <h2>${employee.first_name.slice(0, 1).toUpperCase()}${employee.last_name
-                               .slice(0, 1)
-                               .toUpperCase()}</h2>
-                         </div>`}
+                    ${
+                      employee.avatar
+                        ? `<img class="profile-img" src="/${employee.avatar}">`
+                        : `<div class="dummyImgView">
+                           <h2>${employee.first_name
+                             .slice(0, 1)
+                             .toUpperCase()}${employee.last_name
+                            .slice(0, 1)
+                            .toUpperCase()}</h2>
+                         </div>`
+                    }
 
                     </div>
                     <div style="flex-direction: column;text-align: center;" class="col emp_details d-flex">
@@ -103,8 +107,12 @@ function detailsEmployee(id) {
                         </div>
                     </div>
                     <div class="view_button mb-4 pb-5">
-                    <button type="button" class="btn btn-primary" onclick="deleteEmployee('${employee._id}')">Delete</button>
-                    <button class="btn menu_button"  onclick="editEmployeeDetails('${employee._id}')">Edit Details</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteEmployee('${
+                      employee._id
+                    }')">Delete</button>
+                    <button class="btn menu_button"  onclick="editEmployeeDetails('${
+                      employee._id
+                    }')">Edit Details</button>
                 </div>
        `;
     });
@@ -115,7 +123,6 @@ detailsEmployee(id);
 function redirect() {
   location.replace("/");
 }
-
 
 // function printdiv(printable_div_id) {
 //   var header_str =

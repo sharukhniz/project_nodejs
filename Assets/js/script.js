@@ -7,15 +7,11 @@ const nextButton = document.getElementById("next-button");
 readEmployee();
 
 async function readEmployee() {
-
-
   const response = await fetch("http://localhost:3000/api/employees/");
   const data = await response.json();
   // console.log(data);
   data.reverse();
   displayEmployees(data);
-
- 
 }
 
 async function displayEmployees(data) {
@@ -34,13 +30,15 @@ async function displayEmployees(data) {
         <td>${startIndex + i + 1}</td>
         <td><div class="imageCont">
 
-  ${employee.avatar ?
-    `<img class="profile-img" src="${employee.avatar}">` :
-    `<div class="dummyImg">
+  ${
+    employee.avatar
+      ? `<img class="profile-img" src="${employee.avatar}">`
+      : `<div class="dummyImg">
        <h2>${employee.first_name.slice(0, 1).toUpperCase()}${employee.last_name
-           .slice(0, 1)
-           .toUpperCase()}</h2>
-     </div>`}
+          .slice(0, 1)
+          .toUpperCase()}</h2>
+     </div>`
+  }
   ${employee.salutation + " " + employee.first_name + " " + employee.last_name}
   </div>
 </td>
@@ -67,97 +65,84 @@ async function displayEmployees(data) {
                             </div>
                           </td>
       </tr>`;
-
   }
 
   employeeTableBody.innerHTML = temp;
 }
 
-
-
-
-
 // pagination
 
-function pagenumbervisibletotalPages(pageCount){
-  let paginationblock = document.querySelector('.pagenumber');
-  if (pageCount<=1){
-      paginationblock.style.display='none';
-  }
-  else
-  {
-      paginationblock.style.display='flex';
+function pagenumbervisibletotalPages(pageCount) {
+  let paginationblock = document.querySelector(".pagenumber");
+  if (pageCount <= 1) {
+    paginationblock.style.display = "none";
+  } else {
+    paginationblock.style.display = "flex";
   }
 }
 
-
-var totalPages ;
+var totalPages;
 
 function pagination(pageCount) {
   totalPages = pageCount;
-  document.getElementById('numOfPages').innerText = `${pageCount}`;
+  document.getElementById("numOfPages").innerText = `${pageCount}`;
 
   // div element where the pagination buttons are displayed
   let pgnum = document.getElementById("pagination-numbers");
-  let listnum = document.getElementById('page_no');
+  let listnum = document.getElementById("page_no");
 
-  let temp = '';
-  let list = '';
+  let temp = "";
+  let list = "";
   for (let i = 1; i <= pageCount; i++) {
+    temp += `<button class="page-item" id="page${i}">${i}</button>`;
 
-      temp += `<button class="page-item" id="page${i}">${i}</button>`;
+    let isSelected = i === currentPage;
 
-      let isSelected = i === currentPage;
-
-      list += `<option id="listNum${i}" value="${i}" ${isSelected ? 'selected' : ''}>${i}</option>`;
+    list += `<option id="listNum${i}" value="${i}" ${
+      isSelected ? "selected" : ""
+    }>${i}</option>`;
   }
 
   pgnum.innerHTML = temp;
   listnum.innerHTML = list;
   listnum.value = currentPage;
 
-
   for (let i = 1; i <= pageCount; i++) {
-      (function (pageNumber) {
-          const pageCounter = document.getElementById(`page${pageNumber}`);
-          pageCounter.addEventListener('click', function (e) {
-              e.preventDefault();
-              currentPage = pageNumber;
-           readEmployee();
-          });
-      })(i);
+    (function (pageNumber) {
+      const pageCounter = document.getElementById(`page${pageNumber}`);
+      pageCounter.addEventListener("click", function (e) {
+        e.preventDefault();
+        currentPage = pageNumber;
+        readEmployee();
+      });
+    })(i);
   }
-  
 
-  
-if (currentPage == 1) {
-      prevButton.disabled=true;
+  if (currentPage == 1) {
+    prevButton.disabled = true;
   } else {
-    prevButton.disabled=false;
+    prevButton.disabled = false;
   }
   if (currentPage == pageCount) {
-    nextButton.disabled=true;
-} else {
-  nextButton.disabled=false;
+    nextButton.disabled = true;
+  } else {
+    nextButton.disabled = false;
+  }
 }
-
-
-}
-
 
 prevButton.addEventListener("click", function (e) {
   e.preventDefault();
   if (currentPage > 1) {
-      currentPage -= 1;
-      readEmployee();
+    currentPage -= 1;
+    readEmployee();
   }
 });
 
 nextButton.addEventListener("click", function (e) {
   e.preventDefault();
   if (currentPage < totalPages) {
-      currentPage+=1;
-      readEmployee();
+    currentPage += 1;
+    readEmployee();
   }
 });
 
@@ -167,9 +152,6 @@ function listPaginate(value) {
   readEmployee();
 }
 //end of pagination
-
-
-
 
 // view employee
 

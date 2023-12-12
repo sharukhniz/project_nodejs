@@ -192,23 +192,23 @@ exports.search = (req, res) => {
   const query = req.query.q.toString();
   console.log(query);
   Employeesdb.find({
-      $or: [
-          { first_name: { $regex: new RegExp(query, "i") } },
-          { last_name: { $regex: new RegExp(query, "i") } },
-          { email: { $regex: new RegExp(query, "i") } },
-      ],
-  }).exec()
-      .then(items => {
-          res.json({
-              data: items.reverse(),
-              length: items.length,
-          });
-      })
-      .catch(err => {
-          console.error(err);
-          res.status(500).json({ error: "Internal server error" });
+    $or: [
+      { first_name: { $regex: new RegExp(query, "i") } },
+      { last_name: { $regex: new RegExp(query, "i") } },
+      { email: { $regex: new RegExp(query, "i") } },
+    ],
+  })
+    .exec()
+    .then((items) => {
+      res.json({
+        data: items.reverse(),
+        length: items.length,
       });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "Internal server error" });
+    });
 };
 
 // pagination
-

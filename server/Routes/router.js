@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const services = require("../Services/render");
 const controller = require("../Controller/controller");
-const auth_controller=require("../Controller/auth_controller")
+const auth_controller = require("../Controller/auth_controller");
 /**
  * @description root route
  * @method get/
@@ -10,18 +10,18 @@ const auth_controller=require("../Controller/auth_controller")
 // router.get("/", services.homeRoutes);
 router.get("/view/", services.viewRoutes);
 
-router.get("/login",services.loginRoutes);
-router.post("/login",auth_controller.login)
+router.get("/login", services.loginRoutes);
+router.post("/login", auth_controller.login);
 
-router.get("/signup",services.signupRoutes);
+router.get("/signup", services.signupRoutes);
 router.post("/signup", auth_controller.signup);
 
-router.get('/logout', auth_controller.logout);
+router.get("/logout", auth_controller.logout);
 
-const {isAuthenticated} = require('../Services/authenticate');
+const { isAuthenticated } = require("../Services/authenticate");
 
 // get render home page
-router.get('/',isAuthenticated, services.homeRoutes);
+router.get("/", isAuthenticated, services.homeRoutes);
 
 // API
 // router.post("/api/employees",auth_controller.create);

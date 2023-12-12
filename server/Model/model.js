@@ -64,10 +64,8 @@ var schema = new mongoose.Schema({
   avatar: {
     type: String,
     // required: true,
-  }
+  },
 });
-
-
 
 const Employeedb = mongoose.model("employeedb", schema);
 module.exports = Employeedb;
