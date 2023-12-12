@@ -1,18 +1,8 @@
 var collection = require("../Model/authentication");
 const bcrypt = require("bcrypt");
 
-// create and save new employee
-// exports.signup = (req, res) => {
-//   console.log("hello");
-//   const data = {
-//     name: req.body.name,
-//     email: req.body.email,
-//     password: req.body.password,
-//   };
-//   const userData = collection.insertMany(data);
-//   console.log(userData);
-//   res.redirect("/login");
-// };
+
+// --------***signup***-----------
 exports.signup = async (req, res) => {
   const data = {
     name: req.body.name,
@@ -20,7 +10,7 @@ exports.signup = async (req, res) => {
     password: req.body.password,
   };
 
-  //check the user already exist
+  //duplicate user
 
   const existingUser = await collection.findOne({ name: data.name });
   if (existingUser) {
@@ -29,7 +19,7 @@ exports.signup = async (req, res) => {
     });
   } else
     try {
-      //hash the password using bcrypt
+      //bcrypt
       const saltRounds = 10; //number of salt round for bcrypt
       const hashedPassword = await bcrypt.hash(data.password, saltRounds);
 
@@ -42,26 +32,26 @@ exports.signup = async (req, res) => {
       res.status(500).send("Error registering user");
     }
 };
-
+// --------***login***--------------
 exports.login = async (req, res) => {
   try {
     const check = await collection.findOne({ name: req.body.name });
 
-    // Check if the username is not found
+    // check username
     if (!check) {
       return res.render("login", {
         errorMessage: "*Invalid username or password?",
       });
     }
 
-    // Compare the password from the database with the plain text
+    // password matching
     const isPasswordMatch = await bcrypt.compare(
       req.body.password,
       check.password
     );
 
     if (isPasswordMatch) {
-      // Set the user session upon successful login
+      // user session setting
       req.session.user = check;
       res.redirect("/");
     } else {
@@ -75,6 +65,8 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+// ---------***logout***-------------
 exports.logout = async (req, res) => {
   req.session.destroy((err) => {
     if (err) {

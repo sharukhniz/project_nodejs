@@ -1,370 +1,174 @@
-<div
-  class="modal"
-  id="edit_page"
-  tabindex="-1"
-  aria-labelledby="edit_exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal" id="edit_page" tabindex="-1" aria-labelledby="edit_exampleModalLabel" aria-hidden="true">
   <form class="main_modal" id="editEmployeeForm">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="edit_exampleModalLabel">Edit Employee</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            onclick="closeEditEmployee()"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            onclick="closeEditEmployee()"></button>
         </div>
         <div class="modal-body">
           <div class="col-lg tcol">
             <div style="align-items: center" class="row header mb-2">
-              <div
-                style="
+              <div style="
                   flex-direction: column;
                   align-items: center;
                   padding: 10px 10px;
-                "
-                class="col-2 upload d-flex"
-              >
+                " class="col-2 upload d-flex">
                 <div class="editimagebox">
                   <img class="editImgPreview" src="" id="editImgPreview" />
-                  <label
-                    for="edit_input"
-                    id="edit_label"
-                    onclick="updateImage()"
-                    >Change</label
-                  >
+                  <label for="edit_input" id="edit_label" onclick="updateImage()">Change</label>
                   <input type="file" id="edit_input" />
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-4 mb-3 select_menu">
-                <label class="form-check-label" for="salutation"
-                  >Salutation<span>*</span></label
-                >
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  id="editsalutation"
-                >
+                <label class="form-check-label" for="salutation">Salutation<span>*</span></label>
+                <select class="form-select" aria-label="Default select example" id="editsalutation">
                   <option value="Mr.">Mr.</option>
                   <option value="Mrs.">Mrs.</option>
                   <option value="Ms.">Ms.</option>
                 </select>
-                <label
-                  class="label_val"
-                  id="eidt_errormessageSalutation"
-                  for="editsalutation"
-                  >Select Salutation</label
-                >
+                <label class="label_val" id="eidt_errormessageSalutation" for="editsalutation">Select Salutation</label>
               </div>
               <div class="col-sm-4">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editfirstname"
-                    >First Name<span>*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editfirstname"
-                    placeholder="Enter Your First Name"
-                  />
-                  <label
-                    class="label_val"
-                    id="edit_errormessageFirstname"
-                    for="editfirstname"
-                    >Enter Your First Name</label
-                  >
+                  <label class="form-check-label" for="editfirstname">First Name<span>*</span></label>
+                  <input type="text" class="form-control" id="editfirstname" placeholder="Enter Your First Name" />
+                  <label class="label_val" id="edit_errormessageFirstname" for="editfirstname">Enter Your First
+                    Name</label>
                 </div>
               </div>
               <div class="col-sm-4">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editlastname"
-                    >Last Name<span>*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editlastname"
-                    placeholder="Enter Your Last Name"
-                  />
-                  <label
-                    class="label_val"
-                    id="edit_errormessageLastname"
-                    for="editlastname"
-                    >Enter Your Last Name</label
-                  >
+                  <label class="form-check-label" for="editlastname">Last Name<span>*</span></label>
+                  <input type="text" class="form-control" id="editlastname" placeholder="Enter Your Last Name" />
+                  <label class="label_val" id="edit_errormessageLastname" for="editlastname">Enter Your Last
+                    Name</label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editemail"
-                    >Email Address<span>*</span></label
-                  >
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="editemail"
-                    placeholder="mail@simple.com"
-                  />
-                  <label
-                    class="label_val"
-                    id="edit_errormessageEmail"
-                    for="editemail"
-                    >Enter Your Email</label
-                  >
+                  <label class="form-check-label" for="editemail">Email Address<span>*</span></label>
+                  <input type="email" class="form-control" id="editemail" placeholder="mail@simple.com" />
+                  <label class="label_val" id="edit_errormessageEmail" for="editemail">Enter Your Email</label>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editmobile"
-                    >Mobile Number<span>*</span></label
-                  >
-                  <input
-                    type="tel"
-                    class="form-control"
-                    maxlength="10"
-                    id="editmobile"
-                    placeholder="Enter Mobile Number"
-                  />
-                  <label
-                    class="label_val"
-                    id="edit_errormessagePhone"
-                    for="editmobile"
-                    >Enter Your Mobile Number</label
-                  >
+                  <label class="form-check-label" for="editmobile">Mobile Number<span>*</span></label>
+                  <input type="tel" class="form-control" maxlength="10" id="editmobile"
+                    placeholder="Enter Mobile Number" />
+                  <label class="label_val" id="edit_errormessagePhone" for="editmobile">Enter Your Mobile Number</label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6 date_option">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editdatepicker"
-                    >Date of Birth<span>*</span></label
-                  >
+                  <label class="form-check-label" for="editdatepicker">Date of Birth<span>*</span></label>
                   <input type="date" class="form-control" id="editdatepicker" />
-                  <label
-                    class="label_val"
-                    id="edit_errormessageDob"
-                    for="editdatepicker"
-                    >Enter Your DOB</label
-                  >
+                  <label class="label_val" id="edit_errormessageDob" for="editdatepicker">Enter Your DOB</label>
                 </div>
               </div>
               <div class="col-sm-6">
-                <label class="form-check-label col-12 mb-2"
-                  >Gender<span>*</span></label
-                >
+                <label class="form-check-label col-12 mb-2">Gender<span>*</span></label>
                 <div class="form-check form-check-inline mt-1">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="editgender"
-                    id="editMale"
-                    value="Male"
-                    checked
-                  />
+                  <input class="form-check-input" type="radio" name="editgender" id="editMale" value="Male" checked />
                   <label class="form-check-label" for="editMale">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="editgender"
-                    id="editFemale"
-                    value="Female"
-                  />
-                  <label class="form-check-label" for="editFemale"
-                    >Female</label
-                  >
+                  <input class="form-check-input" type="radio" name="editgender" id="editFemale" value="Female" />
+                  <label class="form-check-label" for="editFemale">Female</label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editaddress"
-                    >Address<span>*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editaddress"
-                    placeholder="Enter Address"
-                  />
-                  <label
-                    class="label_val"
-                    id="edit_errormessageAddress"
-                    for="editaddress"
-                    >Enter Your Address</label
-                  >
+                  <label class="form-check-label" for="editaddress">Address<span>*</span></label>
+                  <input type="text" class="form-control" id="editaddress" placeholder="Enter Address" />
+                  <label class="label_val" id="edit_errormessageAddress" for="editaddress">Enter Your Address</label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editqualification"
-                    >Qualification<span>*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editqualification"
-                    placeholder="Enter Qualification"
-                  />
-                  <label
-                    class="label_val"
-                    id="edit_errormessageQualifications"
-                    for="editqualification"
-                    >Enter Your Qualification</label
-                  >
+                  <label class="form-check-label" for="editqualification">Qualification<span>*</span></label>
+                  <input type="text" class="form-control" id="editqualification" placeholder="Enter Qualification" />
+                  <label class="label_val" id="edit_errormessageQualifications" for="editqualification">Enter Your
+                    Qualification</label>
                 </div>
               </div>
             </div>
             <div class="row mb-3">
               <div class="col-sm-6 mb-3 select_menu">
-                <label class="form-check-label" for="editcountry"
-                  >Country<span>*</span></label
-                >
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  id="editcountry"
-                >
+                <label class="form-check-label" for="editcountry">Country<span>*</span></label>
+                <select class="form-select" aria-label="Default select example" id="editcountry">
                   <option value="India">India</option>
                   <option value="USA">USA</option>
                   <option value="UK">UK</option>
                   <option value="Germany">Germany</option>
                   <option value="Australia">Australia</option>
                 </select>
-                <label
-                  class="label_val"
-                  id="edit_errormessageCountry"
-                  for="editcountry"
-                  >Select Country</label
-                >
+                <label class="label_val" id="edit_errormessageCountry" for="editcountry">Select Country</label>
               </div>
               <div class="col-sm-6 select_menu">
-                <label class="form-check-label" for="editstate"
-                  >State<span>*</span></label
-                >
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  id="editstate"
-                >
+                <label class="form-check-label" for="editstate">State<span>*</span></label>
+                <select class="form-select" aria-label="Default select example" id="editstate">
                   <option value="Kerala">Kerala</option>
                   <option value="Florida">Florida</option>
                   <option value="England">England</option>
                   <option value="Berlin">Berlin</option>
                   <option value="Victoria">Victoria</option>
                 </select>
-                <label
-                  class="label_val"
-                  id="edit_errormessageState"
-                  for="editstate"
-                  >Select State</label
-                >
+                <label class="label_val" id="edit_errormessageState" for="editstate">Select State</label>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6 mb-3 select_menu">
-                <label class="form-check-label" for="editcity"
-                  >City<span>*</span></label
-                >
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  id="editcity"
-                >
+                <label class="form-check-label" for="editcity">City<span>*</span></label>
+                <select class="form-select" aria-label="Default select example" id="editcity">
                   <option value="Trivandrum">Trivandrum</option>
                   <option value="Miami">Miami</option>
                   <option value="Blackpool">Blackpool</option>
                   <option value="Strausberg">Strausberg</option>
                   <option value="Melbourne">Melbourne</option>
                 </select>
-                <label
-                  class="label_val"
-                  id="edit_errormessageCity"
-                  for="editcity"
-                  >Select City</label
-                >
+                <label class="label_val" id="edit_errormessageCity" for="editcity">Select City</label>
               </div>
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editzip_pin"
-                    >Pin/Zip<span>*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editzip_pin"
-                    placeholder="Enter zip/pin"
-                  />
-                  <label
-                    class="label_val"
-                    id="edit_errormessagePin"
-                    for="editzip_pin"
-                    >Enter Pin/Zip</label
-                  >
+                  <label class="form-check-label" for="editzip_pin">Pin/Zip<span>*</span></label>
+                  <input type="text" class="form-control" id="editzip_pin" placeholder="Enter zip/pin" />
+                  <label class="label_val" id="edit_errormessagePin" for="editzip_pin">Enter Pin/Zip</label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editUserName"
-                    >Username<span>*</span></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="editUserName"
-                    placeholder="Enter Username"
-                  />
-                  <label
-                    class="label_val"
-                    id="edit_errormessageUsrname"
-                    for="editUserName"
-                    >Enter Your Username</label
-                  >
+                  <label class="form-check-label" for="editUserName">Username<span>*</span></label>
+                  <input type="text" class="form-control" id="editUserName" placeholder="Enter Username" />
+                  <label class="label_val" id="edit_errormessageUsrname" for="editUserName">Enter Your Username</label>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-check-label" for="editpassword"
-                    >Password<span>*</span></label
-                  >
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="editpassword"
-                    placeholder="Enter Password"
-                  />
-                  <label
-                    class="label_val"
-                    id="edit_errormessagePass"
-                    for="editpassword"
-                    >Enter Your Password</label
-                  >
+                  <label class="form-check-label" for="editpassword">Password<span>*</span></label>
+                  <input type="password" class="form-control" id="editpassword" placeholder="Enter Password" />
+                  <label class="label_val" id="edit_errormessagePass" for="editpassword">Enter Your Password</label>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="closeEditEmployee()"
-          >
+          <button type="button" class="btn btn-secondary" onclick="closeEditEmployee()">
             Cancel
           </button>
           <button type="button" class="btn btn-primary" id="saveChanges">

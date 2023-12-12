@@ -1,5 +1,5 @@
 let currentPage = 1;
-let display = 3;
+let display = 5;
 const paginationNumbers = document.getElementById("pagination-numbers");
 const prevButton = document.getElementById("prev-button");
 const nextButton = document.getElementById("next-button");

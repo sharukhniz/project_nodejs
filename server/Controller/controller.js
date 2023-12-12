@@ -188,30 +188,13 @@ exports.delete = (req, res) => {
 };
 
 // search
-exports.search = async (req, res) => {
-  const query = req.query.q.toString();
-  try {
-    const items = await Employee.find({
-      $or: [
-        { first_name: { $regex: new RegExp(query, "i") } },
-        { last_name: { $regex: new RegExp(query, "i") } },
-        { email: { $regex: new RegExp(query, "i") } },
-      ],
-    });
-    res.json(items);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "internal server error" });
-  }
-};
-
 exports.search = (req, res) => {
   const query = req.query.q.toString();
   console.log(query);
   Employeesdb.find({
       $or: [
-          { firstName: { $regex: new RegExp(query, "i") } },
-          { lastName: { $regex: new RegExp(query, "i") } },
+          { first_name: { $regex: new RegExp(query, "i") } },
+          { last_name: { $regex: new RegExp(query, "i") } },
           { email: { $regex: new RegExp(query, "i") } },
       ],
   }).exec()
