@@ -44,9 +44,6 @@ function formatDate(dateString) {
 async function saveEditedEmployee(employeeId) {
   // console.log(employeeId, "success");
   try {
-    
-     
-    
     const salutation = document.getElementById("editsalutation").value;
     const first_name = document.getElementById("editfirstname").value;
     const last_name = document.getElementById("editlastname").value;
@@ -86,23 +83,23 @@ async function saveEditedEmployee(employeeId) {
     editEmpData.append("qualification", qualification);
     editEmpData.append("username", username);
     editEmpData.append("password", password);
-    if (editFormValidation()){
+    if (editFormValidation()) {
       console.log("val eroor");
-    const response = await fetch(
-      `http://localhost:3000/api/employees/${employeeId}`,
-      {
-        method: "PUT",
-        body: editEmpData,
+      const response = await fetch(
+        `http://localhost:3000/api/employees/${employeeId}`,
+        {
+          method: "PUT",
+          body: editEmpData,
+        }
+      );
+
+      if (!response.ok) {
+        console.log("Network response not ok");
       }
-    );
-    
-    if (!response.ok) {
-      console.log("Network response not ok");
+      const data = await response.json();
+      console.log("Employee edited succesfully:", data);
+      editConfOn();
     }
-    const data = await response.json();
-    console.log("Employee edited succesfully:", data);
-    editConfOn();
-  }
     // readEmployee();
   } catch (error) {
     console.error("Error editing employee:", error);
@@ -189,11 +186,9 @@ function editConfOff() {
   overlayOff();
   window.location.reload();
 }
-function refresh(){
+function refresh() {
   window.location.reload();
 }
-
-
 
 function editFormValidation() {
   const firstName = document.getElementById("editfirstname").value;
@@ -214,8 +209,12 @@ function editFormValidation() {
   var errorMessageSalutation = document.getElementById(
     "edit_errormessageSalutation"
   );
-  var errorMessageFirstName = document.getElementById("edit_errormessageFirstname");
-  var errorMessageLastName = document.getElementById("edit_errormessageLastname");
+  var errorMessageFirstName = document.getElementById(
+    "edit_errormessageFirstname"
+  );
+  var errorMessageLastName = document.getElementById(
+    "edit_errormessageLastname"
+  );
   var errorMessageEmail = document.getElementById("edit_errormessageEmail");
   var errorMessagePhone = document.getElementById("edit_errormessagePhone");
   var errorMessageDob = document.getElementById("edit_errormessageDob");
@@ -231,14 +230,14 @@ function editFormValidation() {
   var errorMessagePass = document.getElementById("edit_errormessagePass");
 
   let hasError = false;
-  let valSum=0
+  let valSum = 0;
   const validNamePattern = /^[A-Za-z]+$/; // for name validation
 
   // salutation
   if (salutation === "") {
     errorMessageSalutation.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageSalutation.style.display = "none";
   }
@@ -247,12 +246,12 @@ function editFormValidation() {
   if (firstName === "") {
     errorMessageFirstName.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else if (!validNamePattern.test(firstName)) {
     errorMessageFirstName.style.display = "flex";
     errorMessageFirstName.textContent = "Invalid characters in first name";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageFirstName.style.display = "none";
   }
@@ -261,12 +260,12 @@ function editFormValidation() {
   if (lastName === "") {
     errorMessageLastName.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else if (!validNamePattern.test(lastName)) {
     errorMessageLastName.style.display = "flex";
     errorMessageLastName.textContent = "Invalid characters in last name";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageLastName.style.display = "none";
   }
@@ -278,12 +277,11 @@ function editFormValidation() {
   if (email === "") {
     errorMessageEmail.style.display = "flex";
     hasError = true;
-
   } else if (!validEmailPattern.test(email)) {
     errorMessageEmail.style.display = "flex";
     errorMessageEmail.textContent = "Invalid email format";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageEmail.style.display = "none";
   }
@@ -294,12 +292,12 @@ function editFormValidation() {
   if (phone === "") {
     errorMessagePhone.style.display = "flex";
     hasError = true;
-
-  } if (!validPhonePattern.test(phone)) {
+  }
+  if (!validPhonePattern.test(phone)) {
     errorMessagePhone.style.display = "flex";
     errorMessagePhone.textContent = "Invalid phone number";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessagePhone.style.display = "none";
   }
@@ -309,7 +307,7 @@ function editFormValidation() {
   if (dob === "") {
     errorMessageDob.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageDob.style.display = "none";
   }
@@ -319,7 +317,7 @@ function editFormValidation() {
   if (address === "") {
     errorMessageAddress.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageAddress.style.display = "none";
   }
@@ -329,7 +327,7 @@ function editFormValidation() {
   if (qualifications === "") {
     errorMessageQualification.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageQualification.style.display = "none";
   }
@@ -339,7 +337,7 @@ function editFormValidation() {
   if (country === "" || country == "Select a country") {
     errorMessageCountry.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageCountry.style.display = "none";
   }
@@ -349,7 +347,7 @@ function editFormValidation() {
   if (state === "" || state == "Select a state") {
     errorMessageState.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageState.style.display = "none";
   }
@@ -359,7 +357,7 @@ function editFormValidation() {
   if (city === "" || city == "Select a city") {
     errorMessageCity.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageCity.style.display = "none";
   }
@@ -368,7 +366,7 @@ function editFormValidation() {
   if (pincode === "") {
     errorMessagePin.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessagePin.style.display = "none";
   }
@@ -378,7 +376,7 @@ function editFormValidation() {
   if (username === "") {
     errorMessageUsrName.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessageUsrName.style.display = "none";
   }
@@ -388,13 +386,13 @@ function editFormValidation() {
   if (password === "") {
     errorMessagePass.style.display = "flex";
     hasError = true;
-    valSum=valSum+1
+    valSum = valSum + 1;
   } else {
     errorMessagePass.style.display = "none";
   }
-// if (valSum==14){
-//   return true;
-  
-// }
+  // if (valSum==14){
+  //   return true;
+
+  // }
   return !hasError;
 }

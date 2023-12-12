@@ -22,17 +22,17 @@ connectDB();
 
 app.use(
   session({
-      secret: process.env.SESSION_SECRET || "12345",
-      resave: false,
-      saveUninitialized: true,
-      cookie: {
-          maxAge: 1 * 60 * 60 * 1000,
-      },
+    secret: process.env.SESSION_SECRET || "12345",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1 * 60 * 60 * 1000,
+    },
   })
 );
 // parse req to body parser
 app.use(bodyparser.urlencoded({ extended: true }));
-app.use(express.json())
+app.use(express.json());
 // set view engine
 app.set("view engine", "ejs");
 // app.set("views",path.resolve(__dirname,"views/ejs"))
@@ -51,4 +51,3 @@ app.use("/", router);
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
 });
-
