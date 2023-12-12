@@ -1,7 +1,6 @@
 var collection = require("../Model/authentication");
 const bcrypt = require("bcrypt");
 
-
 // --------***signup***-----------
 exports.signup = async (req, res) => {
   const data = {
@@ -12,7 +11,7 @@ exports.signup = async (req, res) => {
 
   //duplicate user
 
-  const existingUser = await collection.findOne({ name: data.name });
+  const existingUser = await collection.findOne({ email: data.email });
   if (existingUser) {
     return res.status(401).send("already found");
     // res.render("signup", {
@@ -36,14 +35,11 @@ exports.signup = async (req, res) => {
 // --------***login***--------------
 exports.login = async (req, res) => {
   try {
-    const check = await collection.findOne({ name: req.body.name });
+    const check = await collection.findOne({ email: req.body.email });
 
     // check username
     if (!check) {
-      return res.status(502).send("already exist");
-      // return res.render("login", {
-      //   errorMessage: "*Invalid username or password?",
-      // });
+      return res.status(502).send("Check Your Email or Password");
     }
 
     // password matching
@@ -57,9 +53,7 @@ exports.login = async (req, res) => {
       req.session.user = check;
       res.redirect("/");
     } else {
-      return res.render("login", {
-        errorMessage: "*Invalid username or password?",
-      });
+      return res.status(502).send("Check Your Email or Password");
     }
   } catch (error) {
     return res.render("login", {

@@ -36,13 +36,13 @@ async function signup() {
 
 // -------***LOGIN***----------
 async function login() {
-    const name = document.getElementById("name").value;
-    // const email = document.getElementById("email").value;
+    // const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     var loginData = {
-        name: name,  
-        // email: email,
+        // name: name,  
+        email: email,
         password: password
     };
 
