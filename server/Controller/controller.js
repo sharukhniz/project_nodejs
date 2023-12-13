@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 // Multer upload configuration
 const upload = multer({ storage: storage }).single("avatar");
 
-// create and save new employee
+//---***create and save new employee***---
 exports.create = (req, res) => {
   console.log("init file", req.files);
   upload(req, res, async (error) => {
@@ -60,7 +60,7 @@ exports.create = (req, res) => {
 
       const avatarPath = req.file ? req.file.path : null;
       console.log(avatarPath);
-      //new employee
+//---***new employee***---
       const employees = new Employeesdb({
         salutation: req.body.salutation,
         first_name: req.body.first_name,
@@ -80,7 +80,7 @@ exports.create = (req, res) => {
         avatar: avatarPath,
       });
 
-      //save to database
+//---***save to database***---
       employees
         .save(employees)
         .then((data) => {
@@ -96,7 +96,13 @@ exports.create = (req, res) => {
   });
 };
 
+// ---***FIND***---
+
 exports.find = (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 5;
+  const skip = (page - 1) * limit;
+  console.log(skip);
   if (req.query.id) {
     const id = req.query.id;
     Employeesdb.findById(id)
@@ -110,18 +116,30 @@ exports.find = (req, res) => {
       .catch((err) => {
         res.status(500).send({ message: "error retrieving user with id" + id });
       });
-  } else {
-    Employeesdb.find()
-      .then((employees) => {
-        res.send(employees);
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: err.message || "error occured",
+  }  else {
+    Employeesdb.countDocuments().exec()
+        .then(totalCount => {
+            Employeesdb.find()
+                .then(data => {
+                    data.reverse();
+
+                    const slicedData = data.slice(skip, skip + limit);
+
+                    res.status(200).json({
+                        message: "ok",
+                        length: totalCount,
+                        data: slicedData,
+                    });
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: err.message || "error occured while retrieving information"
+                    });
+                });
         });
-      });
-  }
+}
 };
+// ---***UPDATE***---
 
 exports.update = (req, res) => {
   upload(req, res, async (error) => {
@@ -165,6 +183,9 @@ exports.update = (req, res) => {
   });
 };
 
+// ---***DELETE***---
+
+
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -187,7 +208,8 @@ exports.delete = (req, res) => {
     });
 };
 
-// search
+//---***SEARCH***---
+
 exports.search = (req, res) => {
   const query = req.query.q.toString();
   console.log(query);
@@ -210,5 +232,3 @@ exports.search = (req, res) => {
       res.status(500).json({ error: "Internal server error" });
     });
 };
-
-// pagination

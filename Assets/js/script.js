@@ -1,5 +1,6 @@
 let currentPage = 1;
-let display = 5;
+let display = 3;
+
 const paginationNumbers = document.getElementById("pagination-numbers");
 const prevButton = document.getElementById("prev-button");
 const nextButton = document.getElementById("next-button");
@@ -7,68 +8,82 @@ const nextButton = document.getElementById("next-button");
 readEmployee();
 
 async function readEmployee() {
-  const response = await fetch("http://localhost:3000/api/employees/");
-  const data = await response.json();
-  // console.log(data);
-  data.reverse();
-  displayEmployees(data);
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/Employees?page=${currentPage}&limit=${display}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    displayEmployees(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 }
 
-async function displayEmployees(data) {
-  let page = currentPage;
+function displayEmployees(datas) {
+  const data = datas.data;
+  const page = currentPage;
   const startIndex = (page - 1) * display;
-  const endIndex = startIndex + display;
-  const displayedEmployees = data.slice(startIndex, endIndex);
-  const pageCount = Math.ceil(data.length / display);
-  const employeeTableBody = document.getElementById("employeetablebody");
+
+  const pageCount = Math.ceil(datas.length / display); 
   pagination(pageCount);
+
+  const employeeTableBody = document.getElementById("employeetablebody");
   let temp = "";
-  temp = "";
-  for (let i = 0; i < displayedEmployees.length; i++) {
-    const employee = displayedEmployees[i];
+
+  for (let i = 0; i < data.length; i++) {
+    const employee = data[i];
+
     temp += `<tr class="zero">
         <td>${startIndex + i + 1}</td>
-        <td><div class="imageCont">
-
-  ${
-    employee.avatar
-      ? `<img class="profile-img" src="${employee.avatar}">`
-      : `<div class="dummyImg">
-       <h2>${employee.first_name.slice(0, 1).toUpperCase()}${employee.last_name
-          .slice(0, 1)
-          .toUpperCase()}</h2>
-     </div>`
-  }
-  ${employee.salutation + " " + employee.first_name + " " + employee.last_name}
-  </div>
-</td>
+        <td>
+          <div class="imageCont">
+            ${
+              employee.avatar
+                ? `<img class="profile-img" src="${employee.avatar}">`
+                : `<div class="dummyImg">
+                    <h2>${employee.first_name.slice(0, 1).toUpperCase()}${employee.last_name
+                      .slice(0, 1)
+                      .toUpperCase()}</h2>
+                  </div>`
+            }
+            ${employee.salutation + " " + employee.first_name + " " + employee.last_name}
+          </div>
+        </td>
         <td>${employee.email}</td>
         <td>${employee.phone}</td>
         <td>${employee.gender}</td>
         <td>${employee.dob}</td>
         <td>${employee.country}</td>
-        <td class="morebutton"><button class="more_button"><i class="fa-solid fa-ellipsis"></i></button>
-                           <div class="dropdown-menu">
-                           <div class="dropdown-item">
-                          <button class="action" onclick="viewEmployee('${
-                            employee._id
-                          }')"><span><i class="fa-regular fa-eye"></i></span> View
-                                  Details</button>
-                              <button class="action" onclick="editEmployeeDetails('${
-                                employee._id
-                              }')"  data-bs-toggle="modal" data-bs-target="#edit_page" href="#"><span><i
-                                      class="fa-solid fa-pen"></i></span> Edit</button>
-                              <button class="action" onclick="deleteEmployee('${
-                                employee._id
-                              }')" data-bs-toggle="modal" data-bs-target="#delete_employee" ><i class="fa fa-sharp fa-light fa-trash" id="buttonDropdown_action"></i>Delete</button>
-                            </div>
-                            </div>
-                          </td>
+        <td class="morebutton">
+          <button class="more_button">
+            <i class="fa-solid fa-ellipsis"></i>
+          </button>
+          <div class="dropdown-menu">
+            <div class="dropdown-item">
+              <button class="action" onclick="viewEmployee('${employee._id}')">
+                <span><i class="fa-regular fa-eye"></i></span> View Details
+              </button>
+              <button class="action" onclick="editEmployeeDetails('${employee._id}')" data-bs-toggle="modal" data-bs-target="#edit_page">
+                <span><i class="fa-solid fa-pen"></i></span> Edit
+              </button>
+              <button class="action" onclick="deleteEmployee('${employee._id}')" data-bs-toggle="modal" data-bs-target="#delete_employee">
+                <i class="fa fa-sharp fa-light fa-trash" id="buttonDropdown_action"></i>Delete
+              </button>
+            </div>
+          </div>
+        </td>
       </tr>`;
   }
 
   employeeTableBody.innerHTML = temp;
 }
+
 
 // pagination
 
@@ -171,7 +186,7 @@ async function searchBar() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const employeeData = data.data;
+        const employeeData = data;
         currentPage = 1;
         displayEmployees(employeeData);
       })

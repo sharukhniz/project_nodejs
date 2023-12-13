@@ -14,16 +14,14 @@ exports.signup = async (req, res) => {
   const existingUser = await collection.findOne({ email: data.email });
   if (existingUser) {
     return res.status(401).send("already found");
-    // res.render("signup", {
-    //   errorMessage: "*UserID already exist",
-    // });
+
   } else
     try {
       //bcrypt
       const saltRounds = 10; //number of salt round for bcrypt
       const hashedPassword = await bcrypt.hash(data.password, saltRounds);
 
-      data.password = hashedPassword; //Replace the hash password with original password
+      data.password = hashedPassword;
       const userData = await collection.insertMany(data);
       req.session.user = userData;
       res.redirect("/login");
@@ -33,6 +31,7 @@ exports.signup = async (req, res) => {
     }
 };
 // --------***login***--------------
+
 exports.login = async (req, res) => {
   try {
     const check = await collection.findOne({ email: req.body.email });

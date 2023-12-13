@@ -1,3 +1,6 @@
+
+// -----***SIGNUP***-----
+
 async function signup() {
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
@@ -32,6 +35,7 @@ async function signup() {
 }
 
 // -------***LOGIN***----------
+
 async function login() {
   // const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
