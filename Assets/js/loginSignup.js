@@ -6,6 +6,8 @@ async function signup() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
+
+
   var newreg = {
     name: name,
     email: email,
@@ -23,15 +25,29 @@ async function signup() {
       body: JSON.stringify(newreg),
     });
 
-    if (!response.ok) {
-      // console.log("hi");
-      document.getElementById("errorName").style.display = "flex";
-    } else {
-      window.location.href = "/login";
+    switch (response.status) {
+      case 401:
+        // console.log("401");
+        let errorName401 = document.querySelector("#errorName");
+        errorName401.style.display = "flex";
+        errorName401.innerHTML = "Email Already Exist";
+        break;
+    
+      case 400:
+        // console.log("400");
+        let errorName400 = document.querySelector("#errorName");
+        errorName400.style.display = "flex";
+        errorName400.innerHTML = "Min 6 character required";
+        break;
+    
+      
+        default:
+        window.location.href = "/login";
     }
-  } catch (error) {
-    console.log(error);
   }
+catch (error ){
+  console.log(error);
+}
 }
 
 // -------***LOGIN***----------
@@ -68,3 +84,4 @@ async function login() {
     console.log(error);
   }
 }
+

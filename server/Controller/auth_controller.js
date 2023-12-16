@@ -9,7 +9,12 @@ exports.signup = async (req, res) => {
     password: req.body.password,
   };
 
-  //duplicate user
+  const minPasswordLength = 6; // You can adjust this value based on your requirements
+  if (data.password.length < minPasswordLength) {
+    return res.status(400).json("Password must be at least " + minPasswordLength + " characters long");
+  }
+
+  //duplicate user  
 
   const existingUser = await collection.findOne({ email: data.email });
   if (existingUser) {
