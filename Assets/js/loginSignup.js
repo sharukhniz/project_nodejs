@@ -85,3 +85,26 @@ async function login() {
   }
 }
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById("loginForm");
+
+  form.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+          event.preventDefault(); 
+          login(); 
+      }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById("signupForm");
+
+  form.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+          event.preventDefault(); 
+          signup();
+      }
+  });
+});

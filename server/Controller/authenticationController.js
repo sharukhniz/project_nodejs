@@ -1,4 +1,4 @@
-var collection = require("../Model/authentication");
+var collection = require("../Model/userModel");
 const bcrypt = require("bcrypt");
 
 // --------***signup***-----------
@@ -9,12 +9,12 @@ exports.signup = async (req, res) => {
     password: req.body.password,
   };
 
-  const minPasswordLength = 6; // You can adjust this value based on your requirements
+  const minPasswordLength = 6; //min pwd lngth
   if (data.password.length < minPasswordLength) {
     return res.status(400).json("Password must be at least " + minPasswordLength + " characters long");
   }
 
-  //duplicate user  
+  //to find duplicate user  
 
   const existingUser = await collection.findOne({ email: data.email });
   if (existingUser) {
@@ -22,13 +22,14 @@ exports.signup = async (req, res) => {
 
   } else
     try {
-      //bcrypt
-      const saltRounds = 10; //number of salt round for bcrypt
+      //using bcrypt
+      const saltRounds = 10; 
       const hashedPassword = await bcrypt.hash(data.password, saltRounds);
 
       data.password = hashedPassword;
       const userData = await collection.insertMany(data);
       req.session.user = userData;
+
       res.redirect("/login");
     } catch (error) {
       console.error(error);
@@ -46,7 +47,7 @@ exports.login = async (req, res) => {
       return res.status(502).send("Check Your Email or Password");
     }
 
-    // password matching
+    // check password matching
     const isPasswordMatch = await bcrypt.compare(
       req.body.password,
       check.password

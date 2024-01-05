@@ -1,30 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const services = require("../Services/render");
-const controller = require("../Controller/controller");
-const auth_controller = require("../Controller/auth_controller");
+const services = require("../Controller/pageController");
+const controller = require("../Controller/employeeController");
+const authentication = require("../Controller/authenticationController");
 /**
  * @description root route
  * @method get/
  */
-// router.get("/", services.homeRoutes);
-router.get("/view/", services.viewRoutes);
+// router.get("/", services.homePage);
+router.get("/view/", services.viewPage);
 
-router.get("/login", services.loginRoutes);
-router.post("/login", auth_controller.login);
+router.get("/login", services.loginPage);
+router.post("/login", authentication.login);
 
-router.get("/signup", services.signupRoutes);
-router.post("/signup", auth_controller.signup);
+router.get("/signup", services.signupPage);
+router.post("/signup", authentication.signup);
 
-router.get("/logout", auth_controller.logout);
+router.get("/logout", authentication.logout);
 
-const { isAuthenticated } = require("../Services/authenticate");
+const { isAuthenticated } = require("../Services/authMiddleware");
 
 // get render home page
-router.get("/", isAuthenticated, services.homeRoutes);
+router.get("/", isAuthenticated, services.homePage);
 
 // API
-// router.post("/api/employees",auth_controller.create);
 router.post("/api/employees", controller.create);
 router.get("/api/employees", controller.find);
 router.put("/api/employees/:id", controller.update);

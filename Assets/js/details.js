@@ -124,6 +124,8 @@ function redirect() {
   location.replace("/");
 }
 
+
+
 // function printdiv(printable_div_id) {
 //   var header_str =
 //     "<html><head><title>" + document.title + "</title></head><body>";

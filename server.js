@@ -5,8 +5,7 @@ const bodyparser = require("body-parser");
 const path = require("path");
 const multer = require("multer");
 const app = express();
-// const bcrypt=require('bcrpyt');
-const collection = require("./server/Model/authentication");
+const collection = require("./server/Model/userModel");
 const session = require("express-session");
 
 dotenv.config({ path: "config.env" });
@@ -14,10 +13,10 @@ const PORT = process.env.PORT || 8080;
 // log request
 app.use(morgan("tiny"));
 
-const controller = require("./server/Controller/controller");
+const controller = require("./server/Controller/employeeController");
 
-//moongoDB connection
-const connectDB = require("./server/Database/connection");
+//moongoDB databaseConnection
+const connectDB = require("./server/Database/databaseConnection");
 connectDB();
 
 app.use(
@@ -35,7 +34,6 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.json());
 // set view engine
 app.set("view engine","ejs");
-// app.set("views",path.resolve(__dirname,"views/ejs"))
 // load assets
 app.use("/css", express.static(path.resolve(__dirname, "assets/css")));
 app.use("/js", express.static(path.resolve(__dirname, "assets/js")));

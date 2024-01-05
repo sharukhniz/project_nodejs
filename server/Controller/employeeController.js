@@ -1,4 +1,4 @@
-var Employeesdb = require("../Model/model");
+var Employeesdb = require("../Model/employeeModel");
 const path = require("path");
 const multer = require("multer");
 // multer storage config
@@ -122,9 +122,7 @@ exports.find = (req, res) => {
             Employeesdb.find()
                 .then(data => {
                     data.reverse();
-
                     const slicedData = data.slice(skip, skip + limit);
-
                     res.status(200).json({
                         message: "ok",
                         length: totalCount,

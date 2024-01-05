@@ -67,5 +67,5 @@ var schema = new mongoose.Schema({
   },
 });
 
-const Employeedb = mongoose.model("employeedb", schema);
+const Employeedb = mongoose.model("Employees", schema);
 module.exports = Employeedb;
