@@ -18,7 +18,6 @@ async function readEmployee() {
     }
 
     const data = await response.json();
-    console.log(data);
     displayEmployees(data);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -185,7 +184,6 @@ async function searchBar() {
     await fetch(`http://localhost:3000/api/employees/search?q=${searchField}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const employeeData = data;
         currentPage = 1;
         displayEmployees(employeeData);

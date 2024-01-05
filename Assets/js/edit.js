@@ -4,7 +4,6 @@ function editEmployeeDetails(employeeId) {
   })
     .then((res) => res.json())
     .then((employees) => {
-      console.log(employees);
       openEditEmployee();
       document.getElementById("editsalutation").value = employees.salutation;
       document.getElementById("editfirstname").value = employees.first_name;
@@ -32,7 +31,6 @@ function editEmployeeDetails(employeeId) {
     .getElementById("saveChanges")
     .addEventListener("click", function (event) {
       event.preventDefault();
-      // console.log("edited");
       saveEditedEmployee(employeeId);
     });
 }
@@ -42,7 +40,6 @@ function formatDate(dateString) {
 }
 // Save changes event
 async function saveEditedEmployee(employeeId) {
-  // console.log(employeeId, "success");
   try {
     const salutation = document.getElementById("editsalutation").value;
     const first_name = document.getElementById("editfirstname").value;
@@ -84,7 +81,6 @@ async function saveEditedEmployee(employeeId) {
     editEmpData.append("username", username);
     editEmpData.append("password", password);
     if (editFormValidation()) {
-      console.log("val eroor");
       const response = await fetch(
         `http://localhost:3000/api/employees/${employeeId}`,
         {
@@ -94,22 +90,18 @@ async function saveEditedEmployee(employeeId) {
       );
 
       if (!response.ok) {
-        console.log("Network response not ok");
       }
       const data = await response.json();
-      console.log("Employee edited succesfully:", data);
       editConfOn();
     }
     // readEmployee();
   } catch (error) {
-    console.error("Error editing employee:", error);
   }
 }
 
 // IMAGE
 function updateImage() {
   const updateUserImage = document.getElementById("edit_input");
-  console.log("hi");
   updateUserImage.addEventListener("change", function (event) {
     const selectedImage = updateUserImage.files[0];
 
@@ -153,7 +145,6 @@ chooseEditFile.addEventListener("change", function () {
 
 function getEditImgData() {
   const updateUserImage = document.getElementById("edit_input");
-  console.log("hi");
   // updateUserImage.click();
 
   updateUserImage.addEventListener("change", function (event) {

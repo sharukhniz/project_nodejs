@@ -19,15 +19,12 @@ const upload = multer({ storage: storage }).single("avatar");
 
 //---***create and save new employee***---
 exports.create = (req, res) => {
-  console.log("init file", req.files);
   upload(req, res, async (error) => {
     if (error instanceof multer.MulterError) {
-      console.log("init avatar", req.body.avatar);
       return res.status(400).json({ error: "image error" + error });
     } else if (error) {
       return res.status(500).json({ error: "server error " + error });
     } else {
-      console.log("val");
       // Validate required fields
       const requiredFields = [
         "salutation",
@@ -48,18 +45,14 @@ exports.create = (req, res) => {
       ];
       for (const field of requiredFields) {
         if (!req.body[field]) {
-          console.log(req.body);
           return res
             .status(400)
             .send({ message: `Error: Missing ${field} field` });
         }
       }
 
-      console.log("Received Data:", req.body);
-      console.log("Received File:", req.file);
 
       const avatarPath = req.file ? req.file.path : null;
-      console.log(avatarPath);
 //---***new employee***---
       const employees = new Employeesdb({
         salutation: req.body.salutation,
@@ -102,7 +95,6 @@ exports.find = (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 5;
   const skip = (page - 1) * limit;
-  console.log(skip);
   if (req.query.id) {
     const id = req.query.id;
     Employeesdb.findById(id)
@@ -172,11 +164,9 @@ exports.update = (req, res) => {
       ...(avatarPath ? { avatar: avatarPath } : {}), // Conditionally include avatar field
     };
 
-    console.log(avatarPath);
     const upd = await Employeesdb.findByIdAndUpdate(req.params.id, updateData, {
       new: true,
     });
-    console.log(upd);
     res.status(200).json(upd);
   });
 };
@@ -210,7 +200,6 @@ exports.delete = (req, res) => {
 
 exports.search = (req, res) => {
   const query = req.query.q.toString();
-  console.log(query);
   Employeesdb.find({
     $or: [
       { first_name: { $regex: new RegExp(query, "i") } },

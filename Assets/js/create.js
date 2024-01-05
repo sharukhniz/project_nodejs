@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const empForm_fetch = document.querySelector("#exampleModal #add_emp_btn");
   empForm_fetch.addEventListener("click", function (e) {
     e.preventDefault();
-    console.log("add");
     const salutation = document.getElementById("salutation").value;
     const first_name = document.getElementById("first_name").value;
     const last_name = document.getElementById("last_name").value;
@@ -11,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const phone = document.getElementById("mob_num").value;
     const DOB = document.getElementById("dob").value;
     const gender = document.querySelector('input[name="gender"]:checked').value;
-    console.log(gender);
     //converting date
     var dateofbirth = changeformat(DOB);
     function changeformat(val) {
@@ -63,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log(data.id);
           closeAddEmp();
           FormValidationSuccessPopup();
-
           readEmployee();
         })
         .catch((error) => {
@@ -146,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
       fileReader.addEventListener("load", function () {
         imgPreview.style.display = "block";
         imgPreview.innerHTML = '<img src="' + this.result + '" />';
-        console.log("image vanno");
       });
       hideUpload();
     }

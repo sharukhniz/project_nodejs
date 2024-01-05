@@ -7,7 +7,6 @@ function detailsEmployee(id) {
   })
     .then((res) => res.json())
     .then((employee) => {
-      console.log(employee);
       let dobParts = employee.dob.split("-");
       let day = parseInt(dobParts[0], 10);
       let month = parseInt(dobParts[1], 10) - 1;
@@ -24,7 +23,6 @@ function detailsEmployee(id) {
       ) {
         age--;
       }
-      //   console.log("Age:", age);/
       const empNameHead = document.getElementById("headerdetails");
       empNameHead.innerHTML = `
 <div class="directory">

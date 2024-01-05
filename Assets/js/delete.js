@@ -7,7 +7,6 @@ function deleteEmployee(employeeId) {
     }).then((response) => {
       if (response.ok) {
         // FormValidationSuccessPopup();
-        console.log(response);
         delConfOn();
         readEmployee();
       }

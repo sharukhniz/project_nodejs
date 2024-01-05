@@ -14,7 +14,6 @@ async function signup() {
     password: password,
   };
 
-  console.log("Request Payload:", JSON.stringify(newreg));
 
   try {
     const response = await fetch("http://localhost:3000/signup", {
@@ -27,14 +26,12 @@ async function signup() {
 
     switch (response.status) {
       case 401:
-        // console.log("401");
         let errorName401 = document.querySelector("#errorName");
         errorName401.style.display = "flex";
         errorName401.innerHTML = "Email Already Exist";
         break;
     
       case 400:
-        // console.log("400");
         let errorName400 = document.querySelector("#errorName");
         errorName400.style.display = "flex";
         errorName400.innerHTML = "Min 6 character required";
@@ -46,7 +43,6 @@ async function signup() {
     }
   }
 catch (error ){
-  console.log(error);
 }
 }
 
@@ -63,7 +59,6 @@ async function login() {
     password: password,
   };
 
-  console.log("Request Payload:", JSON.stringify(loginData));
 
   try {
     const response = await fetch("http://localhost:3000/login", {
@@ -75,13 +70,11 @@ async function login() {
     });
 
     if (!response.ok) {
-      // console.log("hi");
       document.getElementById("errorNameLog").style.display = "flex";
     } else {
       window.location.href = "/";
     }
   } catch (error) {
-    console.log(error);
   }
 }
 
