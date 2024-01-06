@@ -18,7 +18,7 @@ router.post("/signup", authentication.signup);
 
 router.get("/logout", authentication.logout);
 
-const { isAuthenticated } = require("../Services/authMiddleware");
+const { isAuthenticated } = require("../Middleware/authMiddleware");
 
 // get render home page
 router.get("/", isAuthenticated, services.homePage);
